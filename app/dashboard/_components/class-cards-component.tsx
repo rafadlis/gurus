@@ -5,7 +5,7 @@ export async function ClassCardsComponent() {
   const jadwalKelas = await getJadwalKelas();
 
   return (
-    <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+    <div className="flex flex-row gap-3 flex-wrap">
       {jadwalKelas.map((jadwal) => (
         <ClassCard key={jadwal.id} data={jadwal} />
       ))}
