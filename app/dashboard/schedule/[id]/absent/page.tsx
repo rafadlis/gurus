@@ -1,5 +1,12 @@
 import { DashboardHeader } from "@/components/dashboard-header";
 import { AbsenMuridTable } from "./_components/absen-murid-table";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function AbsenMuridPage({
   params,
@@ -9,15 +16,17 @@ export default async function AbsenMuridPage({
   return (
     <article className="flex flex-col gap-3">
       <DashboardHeader />
-      <section className="flex flex-col gap-2">
-        <div>
-          <h1 className="font-bold">Absensi Murid</h1>
-          <p className="text-sm text-muted-foreground">
+      <Card>
+        <CardHeader>
+          <CardTitle>Absensi Murid</CardTitle>
+          <CardDescription>
             Daftar absensi murid untuk jadwal ini.
-          </p>
-        </div>
-        <AbsenMuridTable params={params} />
-      </section>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AbsenMuridTable params={params} />
+        </CardContent>
+      </Card>
     </article>
   );
 }
