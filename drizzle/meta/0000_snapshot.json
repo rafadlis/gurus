@@ -1,0 +1,1317 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.Provinsi": {
+      "name": "Provinsi",
+      "schema": "",
+      "columns": {
+        "kode_provinsi": {
+          "name": "kode_provinsi",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama_provinsi": {
+          "name": "nama_provinsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.MataPelajaran": {
+      "name": "MataPelajaran",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"MataPelajaran_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "mata_pelajaran": {
+          "name": "mata_pelajaran",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tingkat_kelas": {
+          "name": "tingkat_kelas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.AbsenMurid": {
+      "name": "AbsenMurid",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"AbsenMurid_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "jadwal_id": {
+          "name": "jadwal_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "murid_id": {
+          "name": "murid_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status_absen": {
+          "name": "status_absen",
+          "type": "status_absen",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "AbsenMurid_jadwal_id_fkey": {
+          "name": "AbsenMurid_jadwal_id_fkey",
+          "tableFrom": "AbsenMurid",
+          "tableTo": "Jadwal",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "jadwal_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "AbsenMurid_murid_id_fkey": {
+          "name": "AbsenMurid_murid_id_fkey",
+          "tableFrom": "AbsenMurid",
+          "tableTo": "Murid",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "murid_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Sekolah": {
+      "name": "Sekolah",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"Sekolah_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "nama_sekolah": {
+          "name": "nama_sekolah",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode_provinsi": {
+          "name": "kode_provinsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode_kabupaten": {
+          "name": "kode_kabupaten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_resmi": {
+          "name": "nama_resmi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Sekolah_kode_kabupaten_kode_provinsi_fkey": {
+          "name": "Sekolah_kode_kabupaten_kode_provinsi_fkey",
+          "tableFrom": "Sekolah",
+          "tableTo": "Kabupaten",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi",
+            "kode_kabupaten"
+          ],
+          "columnsTo": [
+            "kode_kabupaten",
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Sekolah_kode_provinsi_fkey": {
+          "name": "Sekolah_kode_provinsi_fkey",
+          "tableFrom": "Sekolah",
+          "tableTo": "Provinsi",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi"
+          ],
+          "columnsTo": [
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.NilaiTugas": {
+      "name": "NilaiTugas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"NilaiTugas_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "murid_id": {
+          "name": "murid_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tugas_id": {
+          "name": "tugas_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nilai": {
+          "name": "nilai",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "NilaiTugas_murid_id_fkey": {
+          "name": "NilaiTugas_murid_id_fkey",
+          "tableFrom": "NilaiTugas",
+          "tableTo": "Murid",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "murid_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "NilaiTugas_tugas_id_fkey": {
+          "name": "NilaiTugas_tugas_id_fkey",
+          "tableFrom": "NilaiTugas",
+          "tableTo": "Tugas",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "tugas_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.NilaiKeaktifan": {
+      "name": "NilaiKeaktifan",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "nilai_keaktifan_id_seq",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cache": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "jadwal_id": {
+          "name": "jadwal_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "murid_id": {
+          "name": "murid_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nilai": {
+          "name": "nilai",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "catatan": {
+          "name": "catatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "nilai_keaktifan_jadwal_id_idx": {
+          "name": "nilai_keaktifan_jadwal_id_idx",
+          "columns": [
+            {
+              "expression": "jadwal_id",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int8_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "nilai_keaktifan_murid_id_idx": {
+          "name": "nilai_keaktifan_murid_id_idx",
+          "columns": [
+            {
+              "expression": "murid_id",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "NilaiKeaktifan_jadwal_id_fkey": {
+          "name": "NilaiKeaktifan_jadwal_id_fkey",
+          "tableFrom": "NilaiKeaktifan",
+          "tableTo": "Jadwal",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "jadwal_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "NilaiKeaktifan_murid_id_fkey": {
+          "name": "NilaiKeaktifan_murid_id_fkey",
+          "tableFrom": "NilaiKeaktifan",
+          "tableTo": "Murid",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "murid_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "NilaiKeaktifan_id_key": {
+          "columns": [
+            "id"
+          ],
+          "nullsNotDistinct": false,
+          "name": "NilaiKeaktifan_id_key"
+        }
+      },
+      "checkConstraints": {
+        "nilai_range_check": {
+          "name": "nilai_range_check",
+          "value": "(nilai >= 0) AND (nilai <= 100)"
+        }
+      },
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.PenempatanGuru": {
+      "name": "PenempatanGuru",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"PenempatanGuru_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "guru_id": {
+          "name": "guru_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sekolah_id": {
+          "name": "sekolah_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tanggal_mulai": {
+          "name": "tanggal_mulai",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tanggal_selesai": {
+          "name": "tanggal_selesai",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "PenempatanGuru_guru_id_fkey": {
+          "name": "PenempatanGuru_guru_id_fkey",
+          "tableFrom": "PenempatanGuru",
+          "tableTo": "Guru",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "guru_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "PenempatanGuru_sekolah_id_fkey": {
+          "name": "PenempatanGuru_sekolah_id_fkey",
+          "tableFrom": "PenempatanGuru",
+          "tableTo": "Sekolah",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "sekolah_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Tugas": {
+      "name": "Tugas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"Tugas_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "tanggal_tugas": {
+          "name": "tanggal_tugas",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "jatuh_tempo": {
+          "name": "jatuh_tempo",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_tugas": {
+          "name": "nama_tugas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mapel_id": {
+          "name": "mapel_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Tugas_mapel_id_fkey": {
+          "name": "Tugas_mapel_id_fkey",
+          "tableFrom": "Tugas",
+          "tableTo": "MataPelajaran",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "mapel_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Guru": {
+      "name": "Guru",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"Guru_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "nama_guru": {
+          "name": "nama_guru",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_panggilan": {
+          "name": "nama_panggilan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.NilaiUAS": {
+      "name": "NilaiUAS",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "benar": {
+          "name": "benar",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_lain_id": {
+          "name": "nama_lain_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "nilai_nama_lain_id_nama_lain_id_fk": {
+          "name": "nilai_nama_lain_id_nama_lain_id_fk",
+          "tableFrom": "NilaiUAS",
+          "tableTo": "NamaLain",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "nama_lain_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.NamaLain": {
+      "name": "NamaLain",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama_lain": {
+          "name": "nama_lain",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kelas": {
+          "name": "kelas",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "murid_id": {
+          "name": "murid_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "NamaLain_murid_id_fkey": {
+          "name": "NamaLain_murid_id_fkey",
+          "tableFrom": "NamaLain",
+          "tableTo": "Murid",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "murid_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Murid": {
+      "name": "Murid",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kelas": {
+          "name": "kelas",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nomor_absen": {
+          "name": "nomor_absen",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kelas_id": {
+          "name": "kelas_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "NISN": {
+          "name": "NISN",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "NIS": {
+          "name": "NIS",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Murid_kelas_id_fkey": {
+          "name": "Murid_kelas_id_fkey",
+          "tableFrom": "Murid",
+          "tableTo": "Kelas",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kelas_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Murid_NISN_key": {
+          "columns": [
+            "NISN"
+          ],
+          "nullsNotDistinct": false,
+          "name": "Murid_NISN_key"
+        }
+      },
+      "checkConstraints": {
+        "Murid_NISN_check": {
+          "name": "Murid_NISN_check",
+          "value": "length(\"NISN\") = 10"
+        }
+      },
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Kelas": {
+      "name": "Kelas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"Kelas_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "nama_kelas": {
+          "name": "nama_kelas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tingkat": {
+          "name": "tingkat",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sekolah_id": {
+          "name": "sekolah_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Kelas_sekolah_id_fkey": {
+          "name": "Kelas_sekolah_id_fkey",
+          "tableFrom": "Kelas",
+          "tableTo": "Sekolah",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "sekolah_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Jadwal": {
+      "name": "Jadwal",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "\"JadwalGuru_id_seq\"",
+            "increment": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "startWith": "1",
+            "cycle": false,
+            "schema": "public"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "kelas_id": {
+          "name": "kelas_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waktu_mulai": {
+          "name": "waktu_mulai",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waktu_selesai": {
+          "name": "waktu_selesai",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mapel_id": {
+          "name": "mapel_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "penempatan_guru_id": {
+          "name": "penempatan_guru_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "JadwalGuru_kelas_id_fkey": {
+          "name": "JadwalGuru_kelas_id_fkey",
+          "tableFrom": "Jadwal",
+          "tableTo": "Kelas",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kelas_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Jadwal_mapel_id_fkey": {
+          "name": "Jadwal_mapel_id_fkey",
+          "tableFrom": "Jadwal",
+          "tableTo": "MataPelajaran",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "mapel_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Jadwal_penempatan_guru_id_fkey": {
+          "name": "Jadwal_penempatan_guru_id_fkey",
+          "tableFrom": "Jadwal",
+          "tableTo": "PenempatanGuru",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "penempatan_guru_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Kabupaten": {
+      "name": "Kabupaten",
+      "schema": "",
+      "columns": {
+        "kode_kabupaten": {
+          "name": "kode_kabupaten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_provinsi": {
+          "name": "kode_provinsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_kabupaten": {
+          "name": "nama_kabupaten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Kabupaten_kode_provinsi_fkey": {
+          "name": "Kabupaten_kode_provinsi_fkey",
+          "tableFrom": "Kabupaten",
+          "tableTo": "Provinsi",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi"
+          ],
+          "columnsTo": [
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Kabupaten_pkey": {
+          "name": "Kabupaten_pkey",
+          "columns": [
+            "kode_kabupaten",
+            "kode_provinsi"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Kecamatan": {
+      "name": "Kecamatan",
+      "schema": "",
+      "columns": {
+        "kode_provinsi": {
+          "name": "kode_provinsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_kabupaten": {
+          "name": "kode_kabupaten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_kecamatan": {
+          "name": "nama_kecamatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_kecamatan": {
+          "name": "kode_kecamatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Kecamatan_kode_kabupaten_kode_provinsi_fkey": {
+          "name": "Kecamatan_kode_kabupaten_kode_provinsi_fkey",
+          "tableFrom": "Kecamatan",
+          "tableTo": "Kabupaten",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi",
+            "kode_kabupaten"
+          ],
+          "columnsTo": [
+            "kode_kabupaten",
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Kecamatan_kode_provinsi_fkey": {
+          "name": "Kecamatan_kode_provinsi_fkey",
+          "tableFrom": "Kecamatan",
+          "tableTo": "Provinsi",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi"
+          ],
+          "columnsTo": [
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Kecamatan_pkey": {
+          "name": "Kecamatan_pkey",
+          "columns": [
+            "kode_provinsi",
+            "kode_kabupaten",
+            "kode_kecamatan"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.DesaKelurahan": {
+      "name": "DesaKelurahan",
+      "schema": "",
+      "columns": {
+        "kode_provinsi": {
+          "name": "kode_provinsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_kabupaten": {
+          "name": "kode_kabupaten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_kecamatan": {
+          "name": "kode_kecamatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kode_desa_kelurahan": {
+          "name": "kode_desa_kelurahan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_desa_kelurahan": {
+          "name": "nama_desa_kelurahan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "DesaKelurahan_kode_kabupaten_kode_provinsi_fkey": {
+          "name": "DesaKelurahan_kode_kabupaten_kode_provinsi_fkey",
+          "tableFrom": "DesaKelurahan",
+          "tableTo": "Kabupaten",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi",
+            "kode_kabupaten"
+          ],
+          "columnsTo": [
+            "kode_kabupaten",
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "DesaKelurahan_kode_kecamatan_kode_kabupaten_kode_provinsi_fkey": {
+          "name": "DesaKelurahan_kode_kecamatan_kode_kabupaten_kode_provinsi_fkey",
+          "tableFrom": "DesaKelurahan",
+          "tableTo": "Kecamatan",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi",
+            "kode_kabupaten",
+            "kode_kecamatan"
+          ],
+          "columnsTo": [
+            "kode_provinsi",
+            "kode_kabupaten",
+            "kode_kecamatan"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "DesaKelurahan_kode_provinsi_fkey": {
+          "name": "DesaKelurahan_kode_provinsi_fkey",
+          "tableFrom": "DesaKelurahan",
+          "tableTo": "Provinsi",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "kode_provinsi"
+          ],
+          "columnsTo": [
+            "kode_provinsi"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "DesaKelurahan_pkey": {
+          "name": "DesaKelurahan_pkey",
+          "columns": [
+            "kode_provinsi",
+            "kode_kabupaten",
+            "kode_kecamatan",
+            "kode_desa_kelurahan"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.status_absen": {
+      "name": "status_absen",
+      "values": [
+        "hadir",
+        "ijin",
+        "sakit",
+        "alpha",
+        "tugas",
+        "lainnya"
+      ],
+      "schema": "public"
+    }
+  },
+  "schemas": {},
+  "sequences": {
+    "public.NilaiKeaktifan_id_seq": {
+      "name": "NilaiKeaktifan_id_seq",
+      "schema": "public",
+      "startWith": "1",
+      "minValue": "1",
+      "maxValue": "9223372036854775807",
+      "increment": "1",
+      "cycle": false,
+      "cache": "1"
+    }
+  },
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {}
+  }
+}
