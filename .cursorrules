@@ -1,0 +1,53 @@
+- This app is for teachers to manage their students attendance and grades.
+- This app mainly for teacher of Indonesian school, so the App language should be in Indonesian.
+- The app is built with Next.js 15 (newest version) and React 19 (newest version)
+- always use `Promise<...>` for every `params` or `searchParams` in the page.tsx or layout.tsx file like this
+  ```tsx
+  export default function Page({
+    params,
+    searchParams,
+  }: {
+    params: Promise<{ id: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  }) {
+    return <h1>Halaman Saya</h1>;
+  }
+  ```
+- the app is using experimental `ppr` or partial prerendering and `dynamicIO` from Next.js 15.
+- All the code should be written in typescript.
+- The app is using app router and server actions.
+- The App using Shadcn UI that configured in `@/components.json` file and put in `@/components/ui` folder.
+- for adding new component from shadcn ui, always the command `npx shadcn@latest add <component-name>` as the latest version of shadcn ui.
+- always follow the folder structure:
+  - for feature-specific code (components, server actions, lib, hooks, utils, etc.), place them in `@/app/<feature-name>` folder
+  - for shared/common code used across multiple features, place them in `@/common` folder
+  - example structure:
+    ```
+    /app
+      /dashboard
+        /components
+        /actions
+        /lib
+        /hooks
+        /utils
+      /attendance
+        /components
+        /actions
+        /lib
+    /components
+    /hooks
+    /utils
+    /lib
+    ```
+- Always create separate files for fetching, avoid fetching in `page.tsx` or `layout.tsx` file then use suspense when put in the page.tsx or layout.tsx file or other component.
+- don't use `shadcn-ui@latest` for adding new component from shadcn ui, use `npx shadcn@latest add <component-name>` instead.
+- Always use the best Shadcn `Form` component example for make a form.
+- Always use phosphoricons for the icon that imported from `@phosphor-icons/react/dist/ssr`
+- use zod for validation for the form that integrated with drizzle orm and shadcn form.
+- The app is hosted on Vercel.
+- The app is using Tailwind CSS for styling.
+- The app is using Drizzle ORM for database operations.
+- The app is using Supabase (postgres) for authentication and database using `supabase-js` package.
+- see `/drizzle/schema.ts` for the database schema and `/drizzle/relations.ts` for the relations when use drizzle orm using `/drizzle/server.ts` file.
+- always prioritize using `supabase-js` for database operations using `/supabase/server.ts` file for the operations and `/common/supabase.types.ts` for the types instead of drizzle orm.
+- always prioritize using `supabase-js` for authentication and authorization using `/supabase/server.ts` file instead of drizzle orm.
