@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <DashboardSidebar />
-      <SidebarInset className="flex flex-col gap-3 p-4">
+      <SidebarInset className="flex flex-col gap-3 p-4 bg-muted">
         {children}
       </SidebarInset>
     </SidebarProvider>
