@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  ChalkboardTeacher,
   ClockCountdown,
   GraduationCap,
   House,
@@ -38,7 +37,7 @@ export function DashboardSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2">
           <Button size="icon">
-            <ChalkboardTeacher weight="fill" />
+            <span className="font-semibold">Gu</span>
           </Button>
           <div className="flex flex-col gap-0">
             <span className="text-md font-semibold">Aku Guru</span>
@@ -57,7 +56,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard">
-                    <House weight="duotone" />
+                    <House weight="duotone" className="text-primary" />
                     <span>Dasbor</span>
                   </Link>
                 </SidebarMenuButton>
@@ -65,7 +64,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard/schedule">
-                    <ClockCountdown weight="duotone" />
+                    <ClockCountdown weight="duotone" className="text-primary" />
                     <span>Jadwal Kelas</span>
                   </Link>
                 </SidebarMenuButton>
@@ -73,7 +72,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard/students">
-                    <Users weight="duotone" />
+                    <Users weight="duotone" className="text-primary" />
                     <span>Daftar Murid</span>
                   </Link>
                 </SidebarMenuButton>
@@ -89,7 +88,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard/attendance">
-                    <ListChecks weight="duotone" />
+                    <ListChecks weight="duotone" className="text-primary" />
                     <span>Absensi</span>
                   </Link>
                 </SidebarMenuButton>
@@ -97,7 +96,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard/activity">
-                    <Pulse weight="duotone" />
+                    <Pulse weight="duotone" className="text-primary" />
                     <span>Keaktifan</span>
                   </Link>
                 </SidebarMenuButton>
@@ -105,7 +104,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard/grades">
-                    <GraduationCap weight="duotone" />
+                    <GraduationCap weight="duotone" className="text-primary" />
                     <span>Nilai</span>
                   </Link>
                 </SidebarMenuButton>

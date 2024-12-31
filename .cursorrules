@@ -51,3 +51,4 @@
 - see `/drizzle/schema.ts` for the database schema and `/drizzle/relations.ts` for the relations when use drizzle orm using `/drizzle/server.ts` file.
 - always prioritize using `supabase-js` for database operations using `/supabase/server.ts` file for the operations and `/common/supabase.types.ts` for the types instead of drizzle orm.
 - always prioritize using `supabase-js` for authentication and authorization using `/supabase/server.ts` file instead of drizzle orm.
+- for client side directive, always use `useQuery` from `@tanstack/react-query` for fetching data.

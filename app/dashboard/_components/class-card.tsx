@@ -12,13 +12,10 @@ import {
   FadersHorizontal,
   ListChecks,
   Pulse,
-  UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-
+import { Separator } from "@/components/ui/separator";
 export function ClassCard({ data }: { data: JadwalKelasType[0] }) {
-  const jumlahMurid = data.Kelas?.Murid.length;
-
   const isAbsenExist = data.AbsenMurid.some(
     (absen) => absen.status_absen !== null
   );
@@ -79,27 +76,24 @@ export function ClassCard({ data }: { data: JadwalKelasType[0] }) {
   const statusStyles = getStatusStyles();
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <div className="flex flex-col gap-1.5">
-          <CardTitle>{data.Kelas?.nama_kelas}</CardTitle>
-          <CardDescription>
-            {new Date(data.waktu_mulai).toLocaleTimeString("id-ID", {
-              hour: "2-digit",
-              minute: "2-digit",
-            }) || "00:00"}
-            -{" "}
-            {new Date(data.waktu_selesai).toLocaleTimeString("id-ID", {
-              hour: "2-digit",
-              minute: "2-digit",
-            }) || "00:00"}
-            {", "}
-            {data.MataPelajaran?.mata_pelajaran}
-          </CardDescription>
-        </div>
-        <Button size="icon" variant="secondary" className="space-y-0">
-          <FadersHorizontal />
-        </Button>
+    <Card className="flex-grow">
+      <CardHeader>
+        <CardTitle className="flex flex-row items-center gap-2">
+          {new Date(data.waktu_mulai).toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }) || "00:00"}{" "}
+          -{" "}
+          {new Date(data.waktu_selesai).toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }) || "00:00"}
+          <Separator orientation="vertical" className="h-4" />
+          <span>{data.Kelas?.nama_kelas}</span>
+        </CardTitle>
+        <CardDescription>
+          {data.PenempatanGuru?.Sekolah?.nama_sekolah}
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex gap-2">
         <div
@@ -116,7 +110,7 @@ export function ClassCard({ data }: { data: JadwalKelasType[0] }) {
           >
             <Link href={`/dashboard/schedule/${data.id}/absent`}>
               <ListChecks className={statusStyles.absen.icon} />
-              Absen
+              <span className="max-md:hidden">Absen</span>
             </Link>
           </Button>
         </div>
@@ -128,12 +122,11 @@ export function ClassCard({ data }: { data: JadwalKelasType[0] }) {
         >
           <Link href={`/dashboard/schedule/${data.id}/activity`}>
             <Pulse className={statusStyles.keaktifan.icon} />
-            Keaktifan
+            <span className="max-md:hidden">Keaktifan</span>
           </Link>
         </Button>
-        <Button size="sm" variant="outline" className="gap-2">
-          <UsersThree />
-          {jumlahMurid}
+        <Button size="sm" variant="outline" className="space-y-0">
+          <FadersHorizontal />
         </Button>
       </CardContent>
     </Card>
